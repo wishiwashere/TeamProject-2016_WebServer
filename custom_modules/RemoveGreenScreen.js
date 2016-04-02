@@ -246,7 +246,7 @@ function finishImage(finalImage, originalImagePath, cb) {
     var savingImageStarted = Date.now();
     
     // Saving the image to the server
-    withBlackBackground.write("./public/images/KeyedImage.png", function () {
+    withBlackBackground.write("../public/images/KeyedImage.png", function () {
         console.log("Image saved in " + ((Date.now() - savingImageStarted) / 1000) + " seconds");
         
         // Calling the callback function, so that the index route can now respond with the keyed image url

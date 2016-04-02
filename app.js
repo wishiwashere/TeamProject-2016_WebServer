@@ -14,7 +14,7 @@ var users = require('./routes/users');
 var app = express();
 
 var multerStorage = multer.diskStorage({
-    destination: "./public/images",
+    destination: "../public/images",
     filename: function (req, file, cb) {
         console.log("File received " + file.originalname);
         cb(null, Date.now() + "_" + file.originalname);
