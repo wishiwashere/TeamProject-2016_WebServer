@@ -21,7 +21,7 @@ router.post("/", function(req, res, next){
         console.log("Keying complete");
         
         // Sending the url of the resulting image back to the user in the response
-        res.send("http://localhost:3000/KeyedImage.png");
+        res.send("https://wishiwashere.azurewebsites.net/KeyedImage.png");
     });
 });
 
