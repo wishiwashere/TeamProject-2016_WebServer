@@ -14,7 +14,7 @@ var users = require('./routes/users');
 var app = express();
 
 var multerStorage = multer.diskStorage({
-    destination: "./images",
+    destination: "./public/images",
     filename: function (req, file, cb) {
         console.log("File received " + file.originalname);
         cb(null, Date.now() + "_" + file.originalname);
@@ -23,19 +23,6 @@ var multerStorage = multer.diskStorage({
 
 var multerUpload = multer({
     storage: multerStorage
-});
-
-fs.exists("/images", function(exists) {
-    var pathName = "/images";
-
-    if (exists) {
-        console.log("The " + pathName + " directory already exists");
-    } else {
-        console.log("The " + pathName + " directory does not already exist");
-        fs.mkdir(pathName, function(err) {
-            console.log("New " + pathName + " directory created");        
-        });
-    }
 });
 
 app.use("/", multerUpload.any());
@@ -51,8 +38,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'images')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/customReq', routes);
