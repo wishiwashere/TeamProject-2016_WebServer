@@ -10,7 +10,7 @@ router.post("/", function(req, res, next){
     
     // Increasing the default timeout to 15 seconds, as the greenscreening can take alot of time
     // and I don't want the request to timeout while it is processing
-    req.setTimeout(15000, function (err) {
+    req.setTimeout(25000, function (err) {
         console.log("Server timed out " + err);
     });
     
