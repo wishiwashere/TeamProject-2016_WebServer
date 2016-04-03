@@ -235,18 +235,11 @@ var RemoveGreenScreenFunctions = {
 
 // Composite the image (if necessary) and save to the server as a PNG
 function finishImage(finalImage, originalImagePath, cb) {
-    var withBlackBackground = new Jimp(finalImage.bitmap.width, finalImage.bitmap.height, 0x000000FF, function (err, image) {
-        // This is a plain black image, the same size as the original image passed in. Using this
-        // temporarily to composite the keyed image onto, to test that the keying looks clean
-    });
-    
-    // Placing the final image ontop of the black backgroun (for testing purposes to see the edges)
-    withBlackBackground.composite(finalImage, 0, 0);
 
     var savingImageStarted = Date.now();
     
     // Saving the image to the server
-    withBlackBackground.write("../public/images/KeyedImage.png", function () {
+    finalImage.write("../public/images/KeyedImage.png", function () {
         console.log("Image saved in " + ((Date.now() - savingImageStarted) / 1000) + " seconds");
         
         // Calling the callback function, so that the index route can now respond with the keyed image url
