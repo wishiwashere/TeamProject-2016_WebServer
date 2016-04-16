@@ -6,3 +6,9 @@ body {
 a {
   color: #00B7FF;
 }
+
+#removeGreenScreenImage {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}

@@ -16,7 +16,7 @@ var fs = require("fs");
 var RemoveGreenScreenFunctions = {
     SD: function (originalImage, cb) {
         // Lower Quality Result - Takes approximatley 5 seconds to process
-    
+
         // Using the Jimp package to read in an image
         Jimp.read("./" + originalImage, function (err, cameraImage) {
 
@@ -25,7 +25,7 @@ var RemoveGreenScreenFunctions = {
             console.log("Removing green screen...");
 
             var keyingImageStarted = Date.now();
-    
+
             // Creating a variable in which to store the keyed version of the image passed in. Defaulting this
             // to be equal to a clone of the original image, so that pixels which are not detected as green
             // will remain as they were originally without having to be set again
@@ -40,7 +40,7 @@ var RemoveGreenScreenFunctions = {
                 // Getting the colour of the current pixel (as an integer) and converting it to an RGBA
                 // (Red, Green, Blue, Alpha) object
                 var pixelColorObject = Jimp.intToRGBA(cameraImage.getPixelColor(x, y));
-            
+
                 // Using the properties of the pixelColorObject to create a new RGB (Red, Green, Blue)
                 // string, so that the onecolor package will recognise it as a color
                 var pixelColor = "rgb(" + pixelColorObject.r + ", " + pixelColorObject.g + ", " + pixelColorObject.b + ")";
@@ -49,7 +49,7 @@ var RemoveGreenScreenFunctions = {
                 // 0 and 1). Multiplying this value by 360 to map it to this more commonly used range for hues in the 
                 // color specturm
                 var pixelHue = onecolor(pixelColor).hue() * 360;
-    
+
                 // If the hue of this pixel falls anywhere within the range of green in the colour spectrum
                 if (pixelHue > 60 && pixelHue < 180) {
 
@@ -57,14 +57,14 @@ var RemoveGreenScreenFunctions = {
                     // the current pixel was green or not, there was no point in taking up additional time/memory
                     var pixelSaturation = onecolor(pixelColor).saturation() * 100;
                     var pixelBrightness = onecolor(pixelColor).value() * 100;
-                
+
                     // Creating a variable to hold the HSV (Hue, Saturation, Value) - also known as HSB (Hue, Saturation,
                     // Brightness) colour we want to set this pixel to. Defaulting this to be equal to the original colour
                     // of the pixel. Writing this variable as a string, in a format that onecolor will recognise as a color,
                     // so we can later cast it back to RGB (Red, Green, Blue) so the Jimp package can then cast it to an 
                     // integer before setting this as the colour for the current pixel (as Jimp pixels only accept integer values)
                     var hsvCol = "hsv(" + pixelHue + ", " + pixelSaturation + "%, " + pixelBrightness + "%)";
-            
+
                     // Creating a variable to hold the alpha (transparency) value we want to set for the current pixel. Defaulting
                     // this to 255 so that pixels appear opaque by default
                     var pixelAlpha = 255;
@@ -99,10 +99,10 @@ var RemoveGreenScreenFunctions = {
     ,
     HD: function (originalImage, cb) {
         // Lower Quality Result - Takes approximatley 8 seconds to process
-    
+
         // Using the Jimp package to read in an image
         Jimp.read("./" + originalImage, function (err, cameraImage) {
-            if(err){
+            if (err) {
                 console.log(err);
             }
             console.log("Image loaded");
@@ -110,7 +110,7 @@ var RemoveGreenScreenFunctions = {
             console.log("Removing green screen in HD...");
 
             var keyingImageStarted = Date.now();
-    
+
             // Creating a variable in which to store the keyed version of the image passed in. Defaulting this
             // to be equal to a clone of the original image, so that pixels which are not detected as green
             // will remain as they were originally without having to be set again
@@ -125,7 +125,7 @@ var RemoveGreenScreenFunctions = {
                 // Getting the colour of the current pixel (as an integer) and converting it to an RGBA
                 // (Red, Green, Blue, Alpha) object
                 var pixelColorObject = Jimp.intToRGBA(cameraImage.getPixelColor(x, y));
-        
+
                 // Using the properties of the pixelColorObject to create a new RGB (Red, Green, Blue)
                 // string, so that the onecolor package will recognise it as a color
                 var pixelColor = "rgb(" + pixelColorObject.r + ", " + pixelColorObject.g + ", " + pixelColorObject.b + ")";
@@ -134,7 +134,7 @@ var RemoveGreenScreenFunctions = {
                 // 0 and 1). Multiplying this value by 360 to map it to this more commonly used range for hues in the 
                 // color specturm
                 var pixelHue = onecolor(pixelColor).hue() * 360;
-        
+
                 // If the hue of this pixel falls anywhere within the range of green in the colour spectrum
                 if (pixelHue > 60 && pixelHue < 180) {
 
@@ -149,11 +149,11 @@ var RemoveGreenScreenFunctions = {
                     // so we can later cast it back to RGB (Red, Green, Blue) so the Jimp package can then cast it to an 
                     // integer before setting this as the colour for the current pixel (as Jimp pixels only accept integer values)
                     var hsvCol = "hsv(" + pixelHue + ", " + pixelSaturation + "%, " + pixelBrightness + "%)";
-            
+
                     // Creating a variable to hold the alpha (transparency) value we want to set for the current pixel. Defaulting
                     // this to 255 so that pixels appear opaque by default
                     var pixelAlpha = 255;
- 
+
                     // If the saturation and brightness are above 30, then this is a green pixel
                     if (pixelSaturation > 30 && pixelBrightness > 30) {
                         // If the hue of the pixel is between 90 and 100, this is not fully green, but with a tinge 
@@ -177,7 +177,7 @@ var RemoveGreenScreenFunctions = {
                             var pixelHueToRight = pixelHue;
                             var pixelHueAbove = pixelHue;
                             var pixelHueBelow = pixelHue;
- 
+
                             // If the current pixel is not near the edge of the image, changing the values of the variables
                             // for the pixels around it to get their hue values
                             if (x > 0 && x < cameraImage.bitmap.width - 1 && y > 0 && y < cameraImage.bitmap.height - 1) {
@@ -190,7 +190,7 @@ var RemoveGreenScreenFunctions = {
                                 pixelHueAbove = onecolor(pixelColAbove).hue() * 360;
                                 pixelHueBelow = onecolor(pixelColBelow).hue() * 360;
                             }
-                    
+
                             // If the pixels around this pixel are in the more intense are of green, then assume this is part of the green screen
                             if (pixelHueToLeft > 90 && pixelHueToLeft < 150 && pixelHueToRight > 90 && pixelHueToRight < 150 && pixelHueAbove > 90 && pixelHueAbove < 150 && pixelHueBelow > 90 && pixelHueBelow < 150) {
                                 // Set this pixel in the keyedImage to be transparent (Removing the main areas of the green)
@@ -237,21 +237,23 @@ var RemoveGreenScreenFunctions = {
 function finishImage(finalImage, originalImagePath, cb) {
 
     var savingImageStarted = Date.now();
-    
+
     // Saving the image to the server
     finalImage.write("../public/images/KeyedImage.png", function () {
         console.log("Image saved in " + ((Date.now() - savingImageStarted) / 1000) + " seconds");
-        
+
         // Calling the callback function, so that the index route can now respond with the keyed image url
         cb();
-        
-        fs.unlink(originalImagePath, function(err){
-            if(err){
-                console.log("Could not delete file - " + err);
-            } else {
-                console.log("Deleted " + originalImagePath);
-            }
-        });
+
+        if (originalImagePath.indexOf("girlGreenScreen.jpg") == -1) {
+            fs.unlink(originalImagePath, function (err) {
+                if (err) {
+                    console.log("Could not delete file - " + err);
+                } else {
+                    console.log("Deleted " + originalImagePath);
+                }
+            });
+        }
     });
 }
 
