@@ -2,7 +2,7 @@
 
 Green screen keying web server, designed and built for use with the [Wish I Was Here](https://github.com/wishiwashere/TeamProject-2016) Android application, as part of the Team Project module of the Creative Multimedia B.Sc (Hons) degree course in Limerick Institute of Technology, Clonmel, Co. Tipperary.
 
-This server is running live on [wishiwashere.azurewebsites.net], and offers an in-browser preview of the capabilities of the server on a sample image
+This server is running live on [wishiwashere.azurewebsites.net](wishiwashere.azurewebsites.net), and offers an in-browser preview of the capabilities of the server on a sample image
 
 ###Personal Portfolios
 _Eiren McLoughlin_: [eiren.projects.ie](www.eiren.projects.ie)  
@@ -14,7 +14,7 @@ Images from the camera on a device running the app would be sent to the server t
 Due to the significant time that it was taking for the server to process the images (up to 30 seconds at times) it was decided that the green screen keying would remain within the core app, as images can be processed there within 2 to 3 seconds (although it does have a significant impact on the device's memory).
 
 ###Development
-This application was developed through NodeJS in Visual Studio Code, through the following APIs and libraries
+This application was developed through NodeJS in Visual Studio Code, through the following modules
 * [ExpressJS](http://expressjs.com/)
 	* To generate the basic structure of the server
 * [Multer](https://www.npmjs.com/package/multer)
@@ -31,8 +31,6 @@ This application was developed through NodeJS in Visual Studio Code, through the
 This running on an Azure server, through continous deployment from this GitHub repository
 
 ###Example
-####Original Image
-![Wish I Was Here - Green Screen Keying Web Server - Original Image](https://github.com/wishiwashere/TeamProject-2016_WebServer/blob/master/public/images/girlGreenScreen.jpg "Wish I Was Here - Green Screen Keying Web Server - Original Image")
-
-####Keyed Image
-![Wish I Was Here - Green Screen Keying Web Server - Keyed Image](https://github.com/wishiwashere/TeamProject-2016_WebServer/blob/master/KeyedImage.png "Wish I Was Here - Green Screen Keying Web Server - Keyed Image")
+| Original Image        | Keyed Image           |
+| ------------- | ------------- | 
+| ![Wish I Was Here - Green Screen Keying Web Server - Original Image](https://github.com/wishiwashere/TeamProject-2016_WebServer/blob/master/public/images/girlGreenScreen.jpg "Wish I Was Here - Green Screen Keying Web Server - Original Image") | ![Wish I Was Here - Green Screen Keying Web Server - Keyed Image](https://github.com/wishiwashere/TeamProject-2016_WebServer/blob/master/KeyedImage.png "Wish I Was Here - Green Screen Keying Web Server - Keyed Image") |
