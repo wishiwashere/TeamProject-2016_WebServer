@@ -1,6 +1,6 @@
-#Wish I Was Here
+#Wish I Was Here - Green Screen Keying Web Server
 
-Green screen keying web server, designed and built for use with the [Wish I Was Here](https://github.com/wishiwashere/TeamProject-2016) Android application, as part of the Team Project module of the Creative Multimedia B.Sc (Hons) degree course in Limerick Institute of Technology, Clonmel, Co. Tipperary.
+Green screen keying NodeJS web server, designed and built for use with the [Wish I Was Here](https://github.com/wishiwashere/TeamProject-2016) Android application, as part of the Team Project module of the Creative Multimedia B.Sc (Hons) degree course in Limerick Institute of Technology, Clonmel, Co. Tipperary.
 
 This server is running live on [wishiwashere.azurewebsites.net](wishiwashere.azurewebsites.net), and offers an in-browser preview of the capabilities of the server on a sample image
 
