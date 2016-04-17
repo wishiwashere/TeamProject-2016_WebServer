@@ -28,7 +28,7 @@ This application was developed through NodeJS in Visual Studio Code, through the
 	* Accessing the hue, saturation and value of each pixel, so that green screen keying could be completed
 
 ###Deployment
-This running on an Azure server, through continous deployment from this GitHub repository
+This running on an Azure server, through continous deployment from this GitHub repository - [wishiwashere.azurewebsites.net](wishiwashere.azurewebsites.net)
 
 ###Example
 | Original Image        | Keyed Image           |
